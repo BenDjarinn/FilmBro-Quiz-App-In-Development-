@@ -5,5 +5,67 @@
     font-style: bold;
 }
 
+@font-face {
+    font-family: 'ArialRoundedMTBold';
+    src: url('../../../assets/fonts/arialroundedmtbold.ttf') format('truetype');
+    font-weight: 400;
+    font-style: regular;
+}
+
+.header {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    gap: 30vw;
+    margin-top: -15vh;
+    font-weight: bolder;
+    font-size: 35px;
+    font-family: 'CynthoNextBold', sans-serif;
+}
+
+.questionCard {
+    width: 50vw;
+    background-color: #3C3C3C;
+    height: 400px;
+    border-radius: 15px;
+    padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+    .question {
+        color: white;
+        font-size: 30px;
+        font-family: 'ArialRoundedMTBold', sans-serif;
+    }
+
+    .options {
+        // color: white;
+        // font-family: 'CynthoNextBold', sans-serif;
+        // font-size: 25px;
+        // display: flex;
+        // justify-content: center;
+        // gap: 25px;
+        // flex-wrap: wrap;
+
+        display: grid;
+        grid-template-columns: repeat(2, 0fr);
+        gap: 20px;
+        justify-content: center;
+
+        .button {
+            box-sizing: border-box; 
+        }
+    }
+
+   
+
+   
+   
+    
+}
+
+
 
   
