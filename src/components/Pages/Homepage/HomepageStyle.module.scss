@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'CynthoNextBold';
+    src: url('../../../assets/fonts/CynthoNextBold.otf') format('opentype');
+    font-weight: 500;
+    font-style: bold;
+}
+
+
+@font-face {
+    font-family: 'ArialRoundedMTBold';
+    src: url('../../../assets/fonts/arialroundedmtbold.ttf') format('truetype');
+    font-weight: 400;
+    font-style: regular;
+}
+
+.homepageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quotes {
+    font-family: 'ArialRoundedMTBold', sans-serif;
+    color: #ffffff;
+    width: 100%;
+    font-size: 2.3rem;
+}
+
+.totalQuestion {
+    font-family: sans-serif;
+    font-size: 25px;
+    color: white;
+}

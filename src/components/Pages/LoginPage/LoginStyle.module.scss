@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'CynthoNextBold';
+  src: url('../../../assets/fonts/CynthoNextBold.otf') format('opentype');
+  font-weight: 500;
+  font-style: bold;
+}
+ 
+  .logo {
+    font-size: 45px;
+    color: #CB6C6C;
+    font-family: 'CynthoNextBold', sans-serif;
+  }
+  
+  .sublogo {
+    font-size: 45px;
+    color: #C1C1C1;
+  }
+  
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  
+  input {
+    border-color: #d9d9d9;
+    background-color: transparent;
+    width: 320px;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 18px;
+    font-size: 15px;
+  }
+  
+  .question {
+    font-size: 16px;
+    color: #ADA5A5;
+  }
+  
+  span {
+    .link {
+      text-decoration: none; 
+      color: #C1C1C1; 
+    
+      &:hover {
+        color: #ADA5A5; 
+      }
+    }
+  }
+  
+  
