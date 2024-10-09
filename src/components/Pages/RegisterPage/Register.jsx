@@ -1,42 +1,144 @@
-import React from 'react'
-import Form from '../../common/Form/Form'
+import React, { useState } from 'react';
+import Form from '../../common/Form/Form';
 import Button from '../../common/Button/RegButton/Button';
 import styles from '../RegisterPage/RegisterStyle.module.scss';
 import { Link } from 'react-router-dom';
+import { getDatabase, ref, set, push } from 'firebase/database';
+import app from '../../../firebase';
 
 function Register() {
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [repasswordInput, setRepasswordInput] = useState("");
+  const [errorMessages, setErrorMessages] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+    
+    if (!usernameInput) {
+      errors.username = "Username is required";
+    }
+
+    if (!passwordInput) {
+      errors.password = "Password is required";
+    }
+
+    if (!repasswordInput) {
+      errors.repassword = "Re-enter Password is required";
+    }
+
+    if (usernameInput && usernameInput.length < 8) {
+      errors.username = "Username must be at least 8 characters long";
+    }
+    
+    if (passwordInput && passwordInput.length < 8) {
+      errors.password = "Password must be at least 8 characters long";
+    }
+
+    if (passwordInput && repasswordInput && passwordInput !== repasswordInput) {
+      errors.repassword = "Passwords must match";
+    }
+
+    return errors;
+  };
+
+  const saveData = async () => {
+    const validationErrors = validateForm();
+    
+    if (Object.keys(validationErrors).length > 0) {
+      setErrorMessages(validationErrors); 
+      return; 
+    }
+
+    const db = getDatabase(app);
+    const newDocRef = push(ref(db, "userData/users"));
+
+    try {
+      await set(newDocRef, {
+        username: usernameInput,
+        password: passwordInput,
+      });
+      alert("Registration succeed!");
+
+      setUsernameInput("");
+      setPasswordInput("");
+      setRepasswordInput("");
+      setErrorMessages({});
+    } catch (error) {
+      console.error("Error: ", error.message);
+    }
+  };
+
+
+  const formHeight = Object.keys(errorMessages).length > 0 ? "550px" : "500px";
+
   return (
     <>
-      <Form width="320px" height="500px" backgroundColor="#3C3C3C">  
-          <h1 
-            className={styles.logo}>FilmBro<span className={styles.sublogo}>Quiz</span>
-          </h1>
+      <Form width="320px" height={formHeight} backgroundColor="#3C3C3C">
+        <h1 className={styles.logo}>
+          FilmBro<span className={styles.sublogo}>Quiz</span>
+        </h1>
 
-          <div className={styles.inputs}>
-            <div className="formInput">
-              <input type='text' name='username' placeholder='Username'></input>
-            </div>
-
-            <div className="formInput">
-              <input type='password' name='Password' placeholder='Password'></input>
-            </div>
-
-            <div className="formInput">
-              <input type='password' name='Password' placeholder='Re-enter Password'></input>
-            </div>
-
-            <Button width='365px' height='50px' backgroundColor='#9C5C5C' color='#C1C1C1' className='button'>SUBMIT</Button>
+        <div className={styles.inputs}>
+          <div className="formInput">
+            <input
+              type='text'
+              name='username'
+              placeholder='Username'
+              value={usernameInput}
+              onChange={(e) => setUsernameInput(e.target.value)}
+            />
+            {errorMessages.username && (
+              <p className={styles.errorMessage}>{errorMessages.username}</p>
+            )}
           </div>
 
-          <p className={styles.question}>Have an account?
-            <span>
-            <Link to='/' className={styles.link}> Sign In</Link> 
-            </span>
-        </p>
+          <div className="formInput">
+            <input
+              type='password'
+              name='Password'
+              placeholder='Password'
+              value={passwordInput}
+              onChange={(e) => setPasswordInput(e.target.value)}
+            />
+            {errorMessages.password && (
+              <p className={styles.errorMessage}>{errorMessages.password}</p>
+            )}
+          </div>
 
-      </Form>
-    </>
-  )
+          <div className="formInput">
+            <input
+              type='password'
+              name='Password'
+              placeholder='Re-enter Password'
+              value={repasswordInput}
+              onChange={(e) => setRepasswordInput(e.target.value)}
+            />
+            {errorMessages.repassword && (
+              <p className={styles.errorMessage}>{errorMessages.repassword}</p>
+            )}
+          </div>
+
+          <Button
+            width='365px'
+            height='50px'
+            backgroundColor='#9C5C5C'
+            color='#C1C1C1'
+            className='button'
+            onClick={saveData}
+          >
+            SUBMIT
+          </Button>
+        </div>
+
+        <p className={styles.question}>Have an account?
+          <span>
+            <Link to='/' className={styles.link}> Sign In</Link>
+          </span>
+        </p>
+      </Form>
+    </>
+  );
 }
 
-export default Register
+export default Register;
