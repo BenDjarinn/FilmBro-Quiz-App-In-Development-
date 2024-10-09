@@ -3,7 +3,7 @@ import Form from '../../common/Form/Form';
 import Button from '../../common/Button/RegButton/Button';
 import styles from '../RegisterPage/RegisterStyle.module.scss';
 import { Link } from 'react-router-dom';
-import { getDatabase, ref, set, push } from 'firebase/database';
+import { getDatabase, ref, set, push, query, orderByChild, equalTo, get } from 'firebase/database';
 import app from '../../../firebase';
 
 function Register() {
@@ -12,9 +12,9 @@ function Register() {
   const [repasswordInput, setRepasswordInput] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
 
-  const validateForm = () => {
+  const validateForm = async () => {
     const errors = {};
-    
+
     if (!usernameInput) {
       errors.username = "Username is required";
     }
@@ -30,7 +30,7 @@ function Register() {
     if (usernameInput && usernameInput.length < 8) {
       errors.username = "Username must be at least 8 characters long";
     }
-    
+
     if (passwordInput && passwordInput.length < 8) {
       errors.password = "Password must be at least 8 characters long";
     }
@@ -39,36 +39,58 @@ function Register() {
       errors.repassword = "Passwords must match";
     }
 
+    if (usernameInput) {
+      const db = getDatabase(app);
+      const usersRef = ref(db, 'userData/users');
+      const usernameQuery = query(usersRef, orderByChild('username'), equalTo(usernameInput));
+
+      try {
+        console.log("Checking username availability...");
+        const snapshot = await get(usernameQuery);
+        
+        if (snapshot.exists()) {
+          errors.username = "Username already exists";
+        }
+      } catch (error) {
+        console.error('Error querying username:', error.message);
+        errors.username = "Failed to check username availability"; 
+      }
+    }
+
+
     return errors;
   };
 
   const saveData = async () => {
-    const validationErrors = validateForm();
-    
+    const validationErrors = await validateForm(); 
+
     if (Object.keys(validationErrors).length > 0) {
       setErrorMessages(validationErrors); 
       return; 
     }
 
     const db = getDatabase(app);
-    const newDocRef = push(ref(db, "userData/users"));
+    const usersRef = ref(db, 'userData/users');
+    const newDocRef = push(usersRef);
 
     try {
       await set(newDocRef, {
         username: usernameInput,
         password: passwordInput,
       });
+
       alert("Registration succeed!");
 
       setUsernameInput("");
       setPasswordInput("");
       setRepasswordInput("");
       setErrorMessages({});
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error: ", error.message);
+      setErrorMessages({ general: "Registration failed. Please try again." }); 
     }
   };
-
 
   const formHeight = Object.keys(errorMessages).length > 0 ? "550px" : "500px";
 
@@ -130,6 +152,10 @@ function Register() {
             SUBMIT
           </Button>
         </div>
+
+        {errorMessages.general && (
+          <p className={styles.errorMessage}>{errorMessages.general}</p> 
+        )}
 
         <p className={styles.question}>Have an account?
           <span>

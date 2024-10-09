@@ -9,6 +9,7 @@
     font-size: 45px;
     color: #CB6C6C;
     font-family: 'CynthoNextBold', sans-serif;
+    padding-top: 25px;
   }
   
   .sublogo {
@@ -19,8 +20,8 @@
   .inputs {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
-    padding-top: 25px;
+    gap: 1.5rem;
+
   }
   
   input {
