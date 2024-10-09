@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'CynthoNextBold';
+    src: url('../../../assets/fonts/CynthoNextBold.otf') format('opentype');
+    font-weight: 500;
+    font-style: bold;
+}
+
+
+.pageHeader {
+    color: #ffffff;
+    margin-top: -10.5vh;
+
+    .questionAns {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .correctAns {
+        font-weight: 600;
+        font-size: 40px;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../QuestionsPage/QuestionPage.module.scss'
-import Button from '../../common/Button/Button'
+import AnswerButton from '../../common/Button/AnswerButton/AnswerButton'
 
 export default function QuestionPage() {
   return (
@@ -16,13 +16,13 @@ export default function QuestionPage() {
 
         <div className={styles.options}>
 
-                <Button  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>Sasuke Uchiha</Button>
+                <AnswerButton  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>Sasuke Uchiha</AnswerButton>
 
-                <Button  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>True</Button>
+                <AnswerButton  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>Nagato</AnswerButton>
 
-                <Button  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>True</Button>
+                <AnswerButton  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>Itachi Uchiha</AnswerButton>
 
-                <Button  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>True</Button>
+                <AnswerButton  width='250px' height='100px' backgroundColor='#9C5C5C' color='#ffffff' className={styles.button}>Obito</AnswerButton>
 
 
         </div>

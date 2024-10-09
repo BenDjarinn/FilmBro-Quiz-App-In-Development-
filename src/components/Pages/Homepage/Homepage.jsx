@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../Homepage/HomepageStyle.module.scss';
-import Button from '../../common/Button/Button';
+import Button from '../../common/Button/RegButton/Button';
 
 function Homepage() {
   return (
@@ -16,4 +16,4 @@ function Homepage() {
   )
 }
 
-export default Homepage;
+export default Homepage; 

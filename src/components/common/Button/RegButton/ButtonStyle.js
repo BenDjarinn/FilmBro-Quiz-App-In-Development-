@@ -15,7 +15,7 @@ export const ButtonStyle = (width, height, backgroundColor, color) => css`
     cursor: pointer;
 
     &:active, :hover {
-        transform: translateY(1.5px) translateX(1.5px);
+        transform: translateY(1.0px) translateX(1.0px);
     }
 
 ` 

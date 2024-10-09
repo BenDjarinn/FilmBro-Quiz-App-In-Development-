@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from '../../common/Form/Form'
-import Button from '../../common/Button/Button'
+import Button from '../../common/Button/RegButton/Button';
 import styles from '../LoginPage/LoginStyle.module.scss';
 import { Link } from 'react-router-dom';
 
