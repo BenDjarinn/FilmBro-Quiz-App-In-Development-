@@ -8,13 +8,20 @@ function QuizEndPage() {
   const navigate = useNavigate();
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [answeredQuestions, setAnsweredQuestions] = useState(0); 
 
   useEffect(() => {
     const storedScore = localStorage.getItem('score');
     const storedTotalQuestions = localStorage.getItem('totalQuestions');
+    const storedAnsweredQuestions = localStorage.getItem('answeredQuestions');
+    
     if (storedScore && storedTotalQuestions) {
       setScore(parseInt(storedScore));
       setTotalQuestions(parseInt(storedTotalQuestions));
+    }
+
+    if (storedAnsweredQuestions) {
+      setAnsweredQuestions(parseInt(storedAnsweredQuestions)); 
     }
   }, []);
 
@@ -38,7 +45,7 @@ function QuizEndPage() {
         <div className={styles.pageHeader}>
             <p className={styles.greeting}>{getGreeting()}</p>
 
-            <p className={styles.correctAns}>Answered Questions : {totalQuestions}</p>
+            <p className={styles.correctAns}>Answered Questions: {answeredQuestions}</p>
             <p className={styles.correctAns}>The correct answers : {score}/{totalQuestions}</p>
 
         </div>

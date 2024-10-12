@@ -76,6 +76,11 @@ const QuestionsPage = () => {
 
     const handleAnswer = (isCorrect) => {
         setIsAnswered(true); 
+
+        const answeredQuestions = currentQuestionIndex + 1;
+        localStorage.setItem('answeredQuestions', answeredQuestions);
+
+        
         if (isCorrect) {
             setScore((prevScore) => prevScore + 1);
         }
