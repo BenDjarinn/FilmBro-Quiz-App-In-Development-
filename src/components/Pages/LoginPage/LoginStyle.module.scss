@@ -9,7 +9,7 @@
     font-size: 45px;
     color: #CB6C6C;
     font-family: 'CynthoNextBold', sans-serif;
-    padding-top: 15px;
+    padding: 15px 0;
   }
   
   .sublogo {
@@ -24,13 +24,16 @@
   }
   
   input {
-    border-color: #d9d9d9;
     background-color: transparent;
     width: 320px;
     height: 50px;
     padding: 0 20px;
     border-radius: 18px;
     font-size: 15px;
+    border: 1px solid #ccc; 
+    border-bottom: none; 
+    box-shadow: 0 2px 0 rgba(255, 255, 255, 0.5); 
+    outline: none; 
   }
   
   .question {

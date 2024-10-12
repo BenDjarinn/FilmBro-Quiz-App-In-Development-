@@ -8,8 +8,11 @@
 
 .pageHeader {
     color: #ffffff;
-    margin-top: -10.5vh;
-
+    margin-top: -8.5vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2.5rem;
+   
     .questionAns {
         font-size: 50px;
         font-weight: bold;
@@ -19,4 +22,13 @@
         font-weight: 600;
         font-size: 40px;
     }
+
+    .greeting {
+        font-weight: bolder;
+        font-size: 40px;
+        padding-bottom: 20px;
+        line-height: 1.5;
+    }
+
 }
+

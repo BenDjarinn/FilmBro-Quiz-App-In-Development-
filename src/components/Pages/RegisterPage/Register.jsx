@@ -92,7 +92,7 @@ function Register() {
     }
   };
 
-  const formHeight = Object.keys(errorMessages).length > 0 ? "550px" : "500px";
+  const formHeight = Object.keys(errorMessages).length > 0 ? "550px" : "475px";
 
   return (
     <>

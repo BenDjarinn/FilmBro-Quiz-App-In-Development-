@@ -6,7 +6,7 @@ export const ButtonStyle = (width, height, backgroundColor, color) => css`
     background-color: ${backgroundColor};
     color: ${color};
     border-radius: 12px;
-    padding: 8px 14px;
+    padding: 8px;
     border-color: #31426E;
     font-size: 20px;
     font-weight: 600;

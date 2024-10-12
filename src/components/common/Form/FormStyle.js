@@ -11,14 +11,5 @@ export const FormStyle = (width, height, backgroundColor) => css`
     align-items: center;
     gap: 20px;
     padding: 50px 72px;
-
-
-
-    @media (max-width: 767px) {
-        padding: 60px 72px;
-        width: 380px;
-        height: 1200px;
-        margin-top: 10px; 
-        gap: 25px;
    `
 ;

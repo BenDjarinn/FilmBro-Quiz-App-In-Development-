@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
-import Form from '../../common/Form/Form'
+import React, { useState } from 'react';
+import Form from '../../common/Form/Form';
 import Button from '../../common/Button/RegButton/Button';
 import styles from '../LoginPage/LoginStyle.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDatabase, ref, query, orderByChild, equalTo, get } from 'firebase/database';
 import app from '../../../firebase';
+import { useAuth } from '../../common/AuthComponent/AuthContext';
 
 function Login() {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [errorMessages, setErrorMessages] = useState({});
 
+  const { login } = useAuth(); 
   const navigate = useNavigate();
+  
 
   const validateForm = async () => {
     const errors = {};
@@ -50,6 +53,7 @@ function Login() {
         const user = userData[userKey];
         
         if (user.password === passwordInput) {
+          login(); 
           navigate('/homepage');
         } else {
           setErrorMessages({ password: "Incorrect Password" }); 
